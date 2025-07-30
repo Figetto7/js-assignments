@@ -1,4 +1,3 @@
-// script.js for Number Guessing Game
 
 // Global game variables
 let randomNumber; // The number the player has to guess
@@ -6,7 +5,19 @@ let attemptsLeft; // Remaining attempts for the player
 const MAX_ATTEMPTS = 10; // Maximum attempts allowed
 let hasWon = false; // Flag to check if the player has won
 
+
 // --- Helper Functions ---
+/**
+ * Bonus Function, calculates the point value of the player's remaining attempts.
+ * Logic is number of attempts left multiplied by 10.
+ * Max points possible is 100 (if player wins on first attempt).
+ * If player runs out of attempts, they score 0 points.
+ * @returns {number} The point value based on remaining attempts.
+ */
+function calculatePoints() {
+  return attemptsLeft * 10; // Each remaining attempt is worth 10 points
+}
+
 
 /**
  * Generates a random integer between 1 and 100 (inclusive).
@@ -105,6 +116,7 @@ function game() {
         `🎉 Congratulations! You defeated the Evil Al! You guessed the number ${randomNumber} correctly!`
       ); // Print message indicating player has won
       console.log(`You used ${MAX_ATTEMPTS - attemptsLeft + 1} attempts.`); // Print the number of attempts the player used
+      console.log(`You scored ${calculatePoints()} points!`); // Print the score based on remaining attempts
     } else {
       attemptsLeft--; // Decrement attempts
       if (guessStatus === "low") {
